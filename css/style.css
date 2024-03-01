@@ -14,9 +14,15 @@ header {
     justify-content: space-between;
 }
 
-.logo {
+.logo h1 a {
     padding-left: 50px;
     color: #5f9ea0;
+    text-decoration: None;
+    transition: color 0.5s ease;
+}
+
+.logo h1 a:hover {
+    color: #366365;
 }
 
 nav {
@@ -31,6 +37,7 @@ nav ul li{
     font-family: "Poppins", sans-serif;
     margin-right: 20px;
 }
+
 nav ul li a {
     color: #5f9ea0;
     text-decoration: none;
@@ -53,6 +60,7 @@ nav ul li a:hover {
 
 .container {
     display: flex;
+    flex-direction: column;
     margin: 0 200px;
     min-width: 640px;
     max-width: 1000px;
@@ -61,5 +69,101 @@ nav ul li a:hover {
     /* -webkit-backdrop-filter: blur( 3px ); */
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-    padding: 20px;
+    padding: 50px;
+}
+
+.container h2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.input-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.input-loc {
+    width: 400px;
+    height: 50px;
+    border-radius: 5px ;
+    font-family: "Poppins", sans-serif;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.input-date {
+    width: 400px;
+    height: 52px;
+    border-radius: 5px ;
+    font-family: "Poppins", sans-serif;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+}
+
+.input-section button {
+    display: flex;
+    width: 55px;
+    height: 55px;
+    border-radius: 5px ;
+    font-family: "Poppins", sans-serif;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: center;
+    align-items: center;
+    transition: color ease 1s;
+    background-color: #5f9ea0;
+}
+
+.input-section button:hover {
+    background-color: #366365;
+}
+
+.wrapper{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+a i{
+  display: block;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #333;
+  border: 2px solid #333;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+}
+
+a i span{
+  position: relative;
+  z-index: 2;
+}
+
+a i:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #ff003b;
+  transition: all .35s;
+}
+
+a i:hover{
+  color: #fff;
+}
+
+a i:hover:after{
+  width: 100%;
 }
