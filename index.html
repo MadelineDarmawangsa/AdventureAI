@@ -28,18 +28,16 @@
     
     <div class="container">
         <h2> Get your itinerary! </h2>
-        <div class="input-section">
+        <form class="input-section">
             <input type="text" placeholder="Enter Location . . ." class="input-loc"/>
             <input type="date" class="input-date"/>
-            <button class="add-button"> <i class="bx bx-plus bx-sm"></i> </button>
-        </div>
+            <button class="add-button" type="submit"> <i class="bx bx-plus bx-sm"></i> </button>
+        </form>
         <div class="output-container">
-            <p> Your schedule: </p>
+            <div class="output"><p> Your schedule... </p></div>
         </div>
     </div>
 
-    <!-- <footer class="footer">
-        <p>made with ❤️ by <a href="https://github.com/MadelineDarmawangsa"> Madeline Darmawangsa</a> (and ryan lee)</p>
-    </footer> -->
-
+    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
