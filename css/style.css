@@ -66,10 +66,16 @@ nav ul li a:hover {
     max-width: 1000px;
     background: rgba( 255, 255, 255, 0.15 );
     box-shadow: 0 9px 20px 0 rgba( 31, 38, 135, 0.3 );
-    /* -webkit-backdrop-filter: blur( 3px ); */
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     padding: 50px;
+    background-color: rgb(95, 158, 160, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 16px rgba(0,0,0,0.2);
 }
 
 .container h2 {
@@ -77,6 +83,11 @@ nav ul li a:hover {
     flex-direction: row;
     justify-content: center;
 }
+
+/* .input-loc:active {
+    border-color: #2b2118;
+    background-color: #f8f9fa;
+} */
 
 .input-section {
     display: flex;
@@ -87,83 +98,54 @@ nav ul li a:hover {
 .input-loc {
     width: 400px;
     height: 50px;
-    border-radius: 5px ;
+    border-radius: 20px ;
+    font-size:15px;
     font-family: "Poppins", sans-serif;
-    padding-left: 10px;
+    padding-left: 15px;
     padding-right: 10px;
+    margin: 0 5px;
 }
 
 .input-date {
     width: 400px;
     height: 52px;
-    border-radius: 5px ;
+    border-radius: 20px ;
     font-family: "Poppins", sans-serif;
-    padding-left: 10px;
-    padding-right: 10px;
-    
+    font-size:15px;
+    padding-left: 13px;
+    padding-right: 18px;
+    margin: 0 5px;
 }
 
-.input-section button {
+.add-button {
     display: flex;
     width: 55px;
     height: 55px;
-    border-radius: 5px ;
+    border-radius: 20px ;
     font-family: "Poppins", sans-serif;
     padding-left: 10px;
     padding-right: 10px;
     justify-content: center;
     align-items: center;
-    transition: color ease 1s;
+    transition: background-color ease 0.3s, transform ease 0.3s;
     background-color: #5f9ea0;
 }
 
-.input-section button:hover {
-    background-color: #366365;
+.add-button:hover {
+    background-color: #4b7d7e;
+}
+  
+.add-button:active {
+    transform: translateY(4px);
+    transform: scale(0.85);
 }
 
-.wrapper{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-a i{
-  display: block;
-  width: 200px;
-  height: 40px;
-  line-height: 40px;
-  font-size: 18px;
-  font-family: sans-serif;
-  text-decoration: none;
-  color: #333;
-  border: 2px solid #333;
-  letter-spacing: 2px;
-  text-align: center;
-  position: relative;
-  transition: all .35s;
-}
-
-a i span{
-  position: relative;
-  z-index: 2;
-}
-
-a i:after{
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background: #ff003b;
-  transition: all .35s;
-}
-
-a i:hover{
-  color: #fff;
-}
-
-a i:hover:after{
-  width: 100%;
+.output-container {
+    border-radius: 15px;
+    min-height: 400px;
+    margin-top: 20px;
+    padding-left: 18px;
+    border-color: #2B2118;
+    border-width: 5px;
+    background-color: rgb(248, 251, 253);
 }
