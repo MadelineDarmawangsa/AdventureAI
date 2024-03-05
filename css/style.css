@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800;900&display=swap');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
 * {
     font-family: 'Poppins', sans-serif;
 }
@@ -77,6 +78,7 @@ nav ul li a:hover {
     padding: 50px;
     background-color: rgb(95, 158, 160, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: load-container 2s;
 }
 
 .container:hover {
@@ -102,8 +104,8 @@ nav ul li a:hover {
 }
 
 .input-loc {
-    width: 400px;
-    height: 50px;
+    width: 380px;
+    height: 49px;
     border-radius: 20px ;
     font-size: 15px;
     font-family: "Poppins", sans-serif;
@@ -113,8 +115,8 @@ nav ul li a:hover {
 }
 
 .input-date {
-    width: 400px;
-    height: 52px;
+    width: 380px;
+    height: 50px;
     border-radius: 20px ;
     font-family: "Poppins", sans-serif;
     font-size:15px;
@@ -124,24 +126,36 @@ nav ul li a:hover {
 }
 
 .add-button {
+    font-size: 23px;
+    cursor: pointer;
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    &:focus {
+        outline:none;
+        animation: fly 1000ms ease;
+    }
+}
+
+.add-button-bg {
     display: flex;
     width: 55px;
     height: 55px;
     border-radius: 20px ;
     font-family: "Poppins", sans-serif;
-    padding-left: 10px;
-    padding-right: 10px;
     justify-content: center;
     align-items: center;
     transition: background-color ease 0.3s, transform ease 0.3s;
     background-color: #5f9ea0;
+    color: white;
 }
 
-.add-button:hover {
+
+.add-button-bg:hover {
     background-color: #4b7d7e;
 }
   
-.add-button:active {
+.add-button-bg:active {
     transform: translateY(4px);
     transform: scale(0.85);
 }
@@ -149,11 +163,55 @@ nav ul li a:hover {
 .output-container {
     border-radius: 15px;
     margin: 25px 10px 10px 10px;
-    min-height: 400px;
-    /* padding-left: 25px;
-    padding-top: 10px; */
+    min-height: 350px;
     padding: 10px 25px;
     border-color: #2B2118;
     border-width: 5px;
     background-color: rgb(248, 251, 253);
+    position: relative;
+}
+
+.circle {
+    margin: 50px auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    z-index: 1000;
+    border: 5px solid rgba(186, 186, 186, 0.5);
+    border-top-color: #5f9ea0;
+    animation: spin 1s infinite;
+    position:absolute;
+    bottom:-23px;
+    right:23px;
+}
+
+@keyframes fly {
+    10% {
+        transform: translate(-10px,10px);
+    }
+    40% {
+        transform: translate(-15px,15px);
+        opacity:1;
+    }
+    100% {
+        transform: translate(100vw, -100vh);
+        opactiy:0;
+    }
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes load-container {
+    0% {
+        transform: translateY(-50px);
+        opacity:0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity:1;
+    }
 }
