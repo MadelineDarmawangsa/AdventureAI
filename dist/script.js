@@ -5,9 +5,10 @@ const loadingCircle = document.querySelector('.circle');
 
 let userMessage = null; 
 let gptResponse = null;
-let startDate = "03/03/2024";
-let endDate = "03/05/2024";
+let startDate = new Date("03/03/2024");
+let endDate = new Date("03/05/2024");
 let outputHeader = null;
+const context = "in html. Use format date, day. Dont greet or give commentary in your response. Bold the dates using <strong>, add the time for each event, fill time from 9am to 10pm everyday, list specific restaurants, add new lines using <br>.";
 const API_KEY = ''; 
 
 const generateResponse = () => {
@@ -30,7 +31,7 @@ const generateResponse = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data.choices[0].message.content.trim());
-            gptResponse =  data.choices[0].message.content.trim().replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>").replace(/- /g, "<br>- ").replace(/#/g, "<br>- ").replace(/\n(?=\d+:)/g, "<br>");
+            gptResponse = data.choices[0].message.content.trim()
             console.log(gptResponse);
             loadingCircle.style.display = 'none';
             chatbox.innerHTML = outputHeader + gptResponse;
@@ -50,7 +51,8 @@ const handleChat = (event) => {
     const options = { month: 'long', day: 'numeric', year: 'numeric' };
     const formattedStart = startDate.toLocaleDateString('en-US', options);
     const formattedEnd = endDate.toLocaleDateString('en-US', options);
-    userMessage = "generate a travel itinerary for my trip to " + inputLoc.value.trim() + " from " +  formattedStart + ' to ' + formattedEnd + ".  Use format date, day. Dont greet or give commentary in your response. Bold the dates, add the time for each event, be more specific at what restaurants, and list more activities per day. Use ** to indicate bold text and # to indicate newline. Create two new lines between each date. Dont display dates as a list item.";
+    userMessage = "generate a travel itinerary for my trip to " + inputLoc.value.trim() + " from " +  formattedStart + ' to ' + formattedEnd + context;
+    
     inputLoc.value = ""
     console.log(userMessage);
     event.preventDefault(); 
