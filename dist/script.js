@@ -1,3 +1,10 @@
+var btn = document.getElementById("btn");
+var btnText = document.getElementById("btnText");
+
+btn.onclick = function() {
+  btnText.innerHTML = "Saved";
+  btn.classList.add("active");
+}
 const chatbox = document.querySelector(".output p");
 const inputLoc = document.querySelector(".input-loc");
 const sendChatBtn = document.querySelector(".add-button");
