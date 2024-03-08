@@ -29,6 +29,8 @@ function register (event) {
   event.preventDefault(); 
   email = document.querySelector('.email').value
   password = document.querySelector('.password').value
+  document.querySelector('.email').value = ""
+  document.querySelector('.password').value = ""
 
   // Validate input fields
   if (validate_email(email) == false || validate_password(password) == false) {
