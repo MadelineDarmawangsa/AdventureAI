@@ -1,28 +1,23 @@
-// import { initializeApp } from 'firebase/app';
-// import { getDatabase } from "firebase/database";
-// import { getAuth } from "firebase/auth";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js';
-import { getDatabase, ref } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js';
+import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js';
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAvGLxrPjF9l-CHjs3YJRenkqE4z6jaB64",
   authDomain: "adventureai-678bb.firebaseapp.com",
+  databaseURL: "https://adventureai-678bb-default-rtdb.firebaseio.com",
   projectId: "adventureai-678bb",
   storageBucket: "adventureai-678bb.appspot.com",
   messagingSenderId: "802832032444",
-  appId: "1:802832032444:web:ed73cb45bce85878d926b9",
-  measurementId: "G-BGG2CRDZ4H"
+  appId: "1:802832032444:web:b1304c8fbb2d65d4d926b9",
+  measurementId: "G-GPYEWR80YY"
 };
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
-const database = getDatabase(firebaseApp);
+const db = getDatabase(firebaseApp);
 
 let email = null;
 let password = null;
@@ -33,100 +28,69 @@ function register (event) {
   // Get all our input fields
   event.preventDefault(); 
   email = document.querySelector('.email').value
-  console.log(email)
   password = document.querySelector('.password').value
-  console.log(password)
 
   // Validate input fields
   if (validate_email(email) == false || validate_password(password) == false) {
-    alert('Email or Password is Outta Line!!')
+    alert('Invalid email or password')
     return
-    // Don't continue running the code
   }
  
-  // Move on with Auth
   createUserWithEmailAndPassword(auth,email, password)
   .then(function() {
-    // Declare user variable
     var user = auth.currentUser
-
-    // Add this user to Firebase Database
-    var database_ref = ref()
-
-    // Create User data
+    // Add user to Firebase Database
     var user_data = {
       email : email,
-      last_login : Date.now()
+      // last_login : Date.now()
     }
 
     // Push to Firebase Database
-    database_ref.child('users/' + user.uid).set(user_data)
-
-    // Done
-    alert('User Created!!')
+    let email_stripped = email.replace(/[.@]/g, '');
+    set(ref(db,'user/'+email_stripped),user_data)
+    console.log('User Created!!')
   })
   .catch(function(error) {
-    // Firebase will use this to alert of its errors
     var error_code = error.code
     var error_message = error.message
-
-    alert(error_message)
   })
 }
 
-// Set up our login function
 function login () {
-  // Get all our input fields
   email = document.querySelector('.email').value
   password = document.querySelector('.password').value
 
   // Validate input fields
   if (validate_email(email) == false || validate_password(password) == false) {
-    alert('Email or Password is Outta Line!!')
+    alert('Incorrect email or password')
     return
-    // Don't continue running the code
   }
 
-  signInWithEmailAndPassword(auth,email, password)
+  signInWithEmailAndPassword(auth, email, password)
   .then(function() {
-    // Declare user variable
-    var user = auth.currentUser
+    // var user = auth.currentUser
+    // var database_ref = ref()
+    // var user_data = {
+    //   last_login : Date.now()
+    // }
 
-    // Add this user to Firebase Database
-    var database_ref = database.ref()
-
-    // Create User data
-    var user_data = {
-      last_login : Date.now()
-    }
-
-    // Push to Firebase Database
-    database_ref.child('users/' + user.uid).update(user_data)
-
-    // DOne
-    alert('User Logged In!!')
-
+    // database_ref.child('users/' + user.uid).update(user_data)
+    console.log('User Logged In!!')
   })
   .catch(function(error) {
-    // Firebase will use this to alert of its errors
     var error_code = error.code
     var error_message = error.message
-
-    alert(error_message)
+    console.log(error_message)
   })
 }
 
 
-
-
-// Validate Functions
+// Validation Functions
 function validate_email(email) {
   const expression = /^[^@]+@\w+(\.\w+)+\w$/
   if (expression.test(email) == true) {
-    // Email is good
     return true
   } else {
-    // Email is not good
     return false
   }
 }
